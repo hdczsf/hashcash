@@ -6,7 +6,9 @@ proof of work by hashcash
 
 
 给出如下字符串，让机器工作3秒钟
+~~~ go
 "taopopoo@126.com"
+~~~
 
 开始工作
 ~~~ go
