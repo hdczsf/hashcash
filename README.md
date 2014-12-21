@@ -1,7 +1,8 @@
-# hashcash
-# 工作量认证算法
-proof of work by hashcash
+hashcash
+工作量认证算法
 ========
+## proof of work by hashcash
+
 
 
 给出如下字符串，让机器工作3秒钟
