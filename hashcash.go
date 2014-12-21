@@ -1,11 +1,9 @@
-package main
+package hashcash
 
 import (
 	"crypto/sha256"
-	"fmt"
 	"math/big"
 	"strconv"
-	"time"
 )
 
 /*
@@ -33,18 +31,9 @@ import (
 
 */
 
-func main() {
-	message := "taopopoo@126.com"
-	bits := 20
-	t1 := time.Now()
-	nonce := work(message, bits)
-	t2 := time.Now()
-	fmt.Println("工作时间：", t2.Sub(t1).Seconds())
-	ok := check(message, bits, nonce)
-	fmt.Println(ok, nonce)
-}
-
-func work(message string, zeroes int) int {
+//开始工作，猜解一段字符串hash后有足够个0
+//目前（2014年）一般计算机计算出20个0大约一百万次，用时3.0121722秒
+func Work(message string, zeroes int) int {
 	nonce := 0
 	for {
 		nonce++
@@ -56,7 +45,8 @@ func work(message string, zeroes int) int {
 	}
 }
 
-func check(message string, zeroes int, nonce int) bool {
+//检查是否完成工作
+func Check(message string, zeroes int, nonce int) bool {
 	digest := sha256.Sum256([]byte(message + strconv.Itoa(nonce)))
 	for i := zeroes; i >= 0; i-- {
 		if digest[i] != 0 {
